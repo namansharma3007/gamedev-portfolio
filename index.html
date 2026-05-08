@@ -3,492 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jérôme Scheefer — Portfolio</title>
+<title>Sushant Sudan — Indie Game Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #1e1e22;
-    --bg2: #252529;
-    --surface: #2c2c32;
-    --border: #3a3a42;
-    --text: #e8e8e4;
-    --muted: #8a8a94;
-    --accent-orange: #ff6b35;
-    --accent-cyan: #4ecdc4;
-    --accent-purple: #a855f7;
-    --accent-pink: #ec4899;
+    --bg: #1e1e22; --bg2: #252529; --surface: #2c2c32; --border: #3a3a42;
+    --text: #e8e8e4; --muted: #8a8a94;
+    --accent-orange: #ff6b35; --accent-cyan: #4ecdc4; --accent-purple: #a855f7; --accent-pink: #ec4899;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* NAV */
   nav {
-    position: fixed;
-    top: 0; right: 0; left: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 2rem;
+    position: fixed; top: 0; right: 0; left: 0; z-index: 100;
+    display: flex; justify-content: flex-end; align-items: center; gap: 2rem;
     padding: 1.4rem 3rem;
-    background: rgba(30,30,34,0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(30,30,34,0.88); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-
   nav a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    position: relative;
-    cursor: pointer;
+    font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em;
+    color: var(--muted); text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s; position: relative; cursor: pointer;
   }
-
   nav a.active, nav a:hover { color: var(--text); }
   nav a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 1px;
-    background: var(--accent-orange);
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--accent-orange);
   }
 
-  /* PAGES */
   .page { display: none; min-height: 100vh; padding: 6rem 3rem 4rem; max-width: 1100px; margin: 0 auto; }
   .page.active { display: block; animation: fadeIn 0.35s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
 
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* ABOUT PAGE */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: start;
-    margin-top: 2rem;
-  }
-
-  .about-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 8vw, 7rem);
-    letter-spacing: 0.04em;
-    line-height: 0.95;
-    color: var(--text);
-    margin-bottom: 2.5rem;
-  }
-
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: start; margin-top: 2rem; }
+  .about-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 8vw, 7rem); letter-spacing: 0.04em; line-height: 0.95; margin-bottom: 2.5rem; }
   .about-body p { font-size: 1rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.2rem; }
   .about-body p b { color: var(--text); font-weight: 500; }
   .about-body a { color: var(--accent-cyan); text-decoration: none; }
   .about-body a:hover { text-decoration: underline; }
-
-  .avatar-wrap {
-    width: 180px;
-    flex-shrink: 0;
-  }
-
   .avatar-circle {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: #f0e020;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 3px solid var(--border);
-    image-rendering: pixelated;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #3a1a4a, #1a0a2e);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; border: 2px solid var(--accent-purple);
+    box-shadow: 0 0 30px rgba(168,85,247,0.25);
   }
-
-  .pixel-face {
-    width: 100%;
-    height: 100%;
-    background: #f0e020;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    filter: drop-shadow(0 0 20px rgba(240,224,32,0.3));
-  }
-
   .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-  .tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 0.3rem 0.7rem;
-    border-radius: 2px;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    text-transform: uppercase;
-  }
+  .tag { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; padding: 0.3rem 0.7rem; border-radius: 2px; border: 1px solid var(--border); color: var(--muted); text-transform: uppercase; }
   .tag.hot { border-color: var(--accent-orange); color: var(--accent-orange); }
   .tag.cool { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+  .tag.purple { border-color: var(--accent-purple); color: var(--accent-purple); }
 
-  /* GAMES PAGE */
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-  }
-
+  /* SECTION */
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 0.05em; margin-bottom: 0.5rem; }
   .section-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 2.5rem; line-height: 1.6; }
 
-  .games-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 10px;
-  }
-
+  /* GAMES GRID */
+  .games-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; }
   .game-card {
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    transition: transform 0.2s, border-color 0.2s;
-    aspect-ratio: 16/10;
+    position: relative; border-radius: 4px; overflow: hidden; cursor: pointer;
+    background: var(--surface); border: 1px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s; aspect-ratio: 16/10;
   }
-
   .game-card:hover { transform: scale(1.02); border-color: var(--accent-orange); }
   .game-card.featured { grid-column: 1; grid-row: 1 / 3; aspect-ratio: auto; min-height: 300px; }
-
-  .game-card .video-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-  }
-
-  .game-card .img-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .game-card .placeholder-bg {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-  }
-
+  .game-card .placeholder-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
   .game-card .label {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
+    position: absolute; bottom: 0; left: 0; right: 0;
     padding: 0.6rem 0.8rem;
     background: linear-gradient(transparent, rgba(0,0,0,0.85));
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.4rem;
   }
-
-  .label-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent-orange);
-    flex-shrink: 0;
-  }
-
-  .game-more {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-top: 1.5rem;
-  }
-
+  .label-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-orange); flex-shrink: 0; }
+  .game-more { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-top: 1.5rem; }
   .game-more a { color: var(--accent-cyan); text-decoration: none; }
 
-  /* PROJECTS PAGE */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 10px;
-  }
-
+  /* OTHER PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; }
   .project-card {
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    transition: transform 0.2s, border-color 0.2s;
-    aspect-ratio: 16/9;
+    position: relative; border-radius: 4px; overflow: hidden; cursor: pointer;
+    background: var(--surface); border: 1px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s; aspect-ratio: 16/9;
   }
-
   .project-card:hover { transform: scale(1.02); border-color: var(--accent-cyan); }
   .project-card.big { grid-column: 1; aspect-ratio: 16/8; }
-
-  .project-card .placeholder-bg {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
-  }
-
+  .project-card .placeholder-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
   .project-card .label {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 0.6rem 0.8rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0.6rem 0.8rem; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
   }
+  .projects-row2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
 
-  .projects-row2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin-top: 10px;
+  /* RESUME */
+  .resume-wrap { padding: 2rem 0; }
+  .resume-section { margin-bottom: 3rem; }
+  .resume-section h3 { font-family: 'Space Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-orange); margin-bottom: 1.2rem; }
+  .resume-item { border-left: 1px solid var(--border); padding-left: 1.2rem; margin-bottom: 1.5rem; position: relative; }
+  .resume-item::before { content: ''; position: absolute; left: -4px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cyan); }
+  .resume-item .role { font-weight: 500; font-size: 0.95rem; }
+  .resume-item .org { color: var(--muted); font-size: 0.85rem; }
+  .resume-item .period { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--accent-orange); margin-top: 0.2rem; }
+  .resume-item .desc { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.65; }
+  .resume-item .desc ul { margin-top: 0.4rem; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.25rem; }
+  .resume-item .desc li { list-style: none; position: relative; padding-left: 0.8rem; }
+  .resume-item .desc li::before { content: '—'; position: absolute; left: 0; color: var(--accent-orange); font-size: 0.75rem; }
+  .resume-item .link-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 0.6rem; font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    color: var(--accent-cyan); text-decoration: none; border: 1px solid var(--border);
+    padding: 0.25rem 0.6rem; border-radius: 2px; transition: border-color 0.2s;
   }
+  .resume-item .link-btn:hover { border-color: var(--accent-cyan); }
 
-  /* CONTACT PAGE */
-  .contact-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 0.95;
-    margin-bottom: 1.5rem;
-  }
-
+  /* CONTACT */
+  .contact-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; margin-bottom: 1.5rem; }
   .contact-sub { color: var(--muted); margin-bottom: 3rem; max-width: 480px; line-height: 1.7; }
-
   .contact-list { display: flex; flex-direction: column; gap: 0.4rem; max-width: 500px; }
-
   .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.9rem 1.1rem;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    background: var(--surface);
-    text-decoration: none;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 1.1rem; border: 1px solid var(--border); border-radius: 3px;
+    background: var(--surface); text-decoration: none; color: var(--muted);
+    font-family: 'Space Mono', monospace; font-size: 0.75rem; transition: all 0.2s;
   }
-
   .contact-item:hover { background: var(--bg2); border-color: var(--accent-cyan); color: var(--text); }
-
   .contact-icon { font-size: 1rem; width: 20px; text-align: center; flex-shrink: 0; }
 
-  /* FOOTER */
   footer {
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 3rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
+    border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.04em;
   }
-
   footer a { color: var(--accent-cyan); text-decoration: none; }
 
   /* MODAL */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(6px);
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    animation: fadeIn 0.2s ease;
-  }
-
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; animation: fadeIn 0.2s ease; }
   .modal-overlay.hidden { display: none; }
-
-  .modal-box {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    width: 100%;
-    max-width: 680px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-  }
-
-  .modal-header {
-    position: sticky;
-    top: 0;
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-  }
-
-  .modal-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 0.08em;
-    color: var(--text);
-  }
-
-  .modal-close {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 30px; height: 30px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-  }
-
+  .modal-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; width: 100%; max-width: 680px; max-height: 90vh; overflow-y: auto; position: relative; }
+  .modal-header { position: sticky; top: 0; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; z-index: 2; }
+  .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.08em; }
+  .modal-close { background: none; border: 1px solid var(--border); color: var(--muted); width: 30px; height: 30px; border-radius: 3px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .modal-close:hover { border-color: var(--accent-orange); color: var(--text); }
-
   .modal-body { padding: 1.5rem; }
-
   .modal-desc { color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem; }
-
-  .modal-video-wrap {
-    border-radius: 4px;
-    overflow: hidden;
-    aspect-ratio: 16/9;
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--border);
-    background: #000;
-  }
-
+  .modal-video-wrap { border-radius: 4px; overflow: hidden; aspect-ratio: 16/9; margin-bottom: 1.5rem; border: 1px solid var(--border); background: #000; }
   .modal-video-wrap iframe { width: 100%; height: 100%; border: none; }
-
-  .modal-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 1.3rem;
-    border-radius: 3px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    margin-bottom: 1.5rem;
-  }
-
+  .modal-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 3px; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; margin-bottom: 1.5rem; }
   .modal-btn.steam { background: #1b2838; color: #c7d5e0; border: 1px solid #4c6b8a; }
   .modal-btn.steam:hover { background: #2a475e; }
-  .modal-btn.store { background: #0067b8; color: #fff; border: none; }
-  .modal-btn.store:hover { background: #0052a3; }
-
+  .modal-btn.itch { background: #fa5c5c; color: #fff; border: none; }
+  .modal-btn.itch:hover { background: #e04444; }
+  .modal-btn.gsoc { background: #4285f4; color: #fff; border: none; }
+  .modal-btn.gsoc:hover { background: #3367d6; }
   .modal-features { margin-bottom: 1.5rem; }
-  .modal-features h4 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-  }
-
+  .modal-features h4 { font-family: 'Space Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.75rem; }
   .modal-features ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-  .modal-features li {
-    padding-left: 1rem;
-    position: relative;
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
+  .modal-features li { padding-left: 1rem; position: relative; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
   .modal-features li::before { content: '—'; position: absolute; left: 0; color: var(--accent-orange); }
+  .modal-screenshots { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 1rem; }
+  .modal-screenshots .ss { aspect-ratio: 16/10; border-radius: 3px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+  .color-bar { height: 3px; width: 100%; }
 
-  .modal-screenshots {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-top: 1rem;
-  }
-
-  .modal-screenshots .ss {
-    aspect-ratio: 16/10;
-    border-radius: 3px;
-    overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-  }
-
-  .color-bar {
-    height: 3px;
-    width: 100%;
-  }
-
-  /* RESUME placeholder */
-  .resume-wrap { padding: 3rem 0; }
-  .resume-section { margin-bottom: 3rem; }
-  .resume-section h3 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent-orange);
-    margin-bottom: 1.2rem;
-  }
-  .resume-item { border-left: 1px solid var(--border); padding-left: 1.2rem; margin-bottom: 1.5rem; position: relative; }
-  .resume-item::before {
-    content: '';
-    position: absolute;
-    left: -4px; top: 6px;
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--accent-cyan);
-  }
-  .resume-item .role { font-weight: 500; font-size: 0.95rem; }
-  .resume-item .org { color: var(--muted); font-size: 0.85rem; }
-  .resume-item .period {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--accent-orange);
-    margin-top: 0.2rem;
-  }
-  .resume-item .desc { color: var(--muted); font-size: 0.85rem; margin-top: 0.4rem; line-height: 1.6; }
+  .inspirations { margin-top: 1rem; }
+  .inspirations h4 { font-family: 'Space Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.5rem; }
+  .insp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .insp-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; padding: 0.2rem 0.5rem; border-radius: 2px; background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
 </style>
 </head>
 <body>
@@ -501,203 +182,225 @@
   <a onclick="showPage('contact')" id="nav-contact">Contact</a>
 </nav>
 
-<!-- ABOUT PAGE -->
+<!-- ABOUT -->
 <div class="page active" id="page-about">
   <div class="about-grid">
     <div class="about-body">
       <div class="about-title">Hello!</div>
-      <p>I'm <b>Jérôme Scheefer</b>, a fullstack and game developer with 19 years of experience. I love discussing, designing and developing apps and games in general.</p>
-      <p>I've worked on <a href="#">games</a> (both commercial and non-commercial), on <a href="#">websites and apps</a>, and enjoyed <a href="#">some tech stacks at a few places</a>.</p>
-      <p>I'm currently working as a solo gamedev at <a href="#">Ctrl Freak</a>. You can reach me at <a href="mailto:jerome@ctrlfreak.org">jerome@ctrlfreak.org</a> or <a href="#">through here</a>.</p>
+      <p>I'm <b>Sushant Sudan</b>, an indie game developer with over 4 years of experience focused on gameplay systems, puzzle design, and narrative-driven mechanics.</p>
+      <p>My work explores how interactive systems can represent internal states such as <a href="#">anxiety, perception, and player awareness</a>. I approach development through rapid prototyping and iteration, with a focus on game feel, systemic design, and meaningful player interaction.</p>
+      <p>Currently shipping games on <a href="https://store.steampowered.com/app/3876920/Hello_Anxiety/" target="_blank">Steam</a>. Reach me at <a href="mailto:sushantsudan3075@gmail.com">sushantsudan3075@gmail.com</a> or <a href="tel:+919541057342">+91 9541057342</a>.</p>
       <div class="tag-row">
         <span class="tag hot">Unity</span>
         <span class="tag cool">C#</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag hot">Game Design</span>
-        <span class="tag cool">XAML/WinRT</span>
-        <span class="tag">Full Stack</span>
-        <span class="tag hot">19 Years XP</span>
+        <span class="tag purple">Gameplay Systems</span>
+        <span class="tag hot">Puzzle Design</span>
+        <span class="tag cool">Shaders</span>
+        <span class="tag">Procedural Gen</span>
+        <span class="tag purple">Narrative Design</span>
+        <span class="tag">4+ Years XP</span>
       </div>
     </div>
-    <div class="avatar-wrap">
-      <div class="avatar-circle">
-        <div class="pixel-face">🧑‍💻</div>
-      </div>
+    <div>
+      <div class="avatar-circle">🧠</div>
     </div>
   </div>
 </div>
 
-<!-- GAMES PAGE -->
+<!-- GAMES -->
 <div class="page" id="page-games">
   <div class="section-title">Games</div>
-  <p class="section-sub">Here are some games I've created, either to be released, or during game jams, or to showcase my skills using Unity.</p>
+  <p class="section-sub">Games I've created — shipped on Steam, made during game jams, or built to explore unconventional systems.</p>
   <div class="games-grid">
-    <!-- Featured: Lurking -->
-    <div class="game-card featured" onclick="openModal('lurking')">
-      <video class="video-bg" autoplay muted loop playsinline>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-      </video>
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.3),rgba(20,5,5,0.5))"></div>
-      <div class="placeholder-bg" style="font-size:6rem;opacity:0.15">🕷️</div>
-      <div class="label"><span class="label-dot"></span>Lurking</div>
+    <div class="game-card featured" onclick="openModal('hello-anxiety')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#0a0010,#2d0050,#1a0030);flex-direction:column;gap:0.5rem">
+        <span style="font-size:5rem">👁️</span>
+        <span style="font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--accent-purple);letter-spacing:0.1em;opacity:0.8">RELEASED ON STEAM</span>
+      </div>
+      <div class="label"><span class="label-dot" style="background:var(--accent-purple)"></span>Hello Anxiety</div>
     </div>
-    <!-- Phantom Squad -->
-    <div class="game-card" onclick="openModal('phantom')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#0d2b4e,#1a4a7a)">🎮</div>
-      <div class="label"><span class="label-dot" style="background:var(--accent-cyan)"></span>Phantom Squad</div>
+    <div class="game-card" onclick="openModal('ghost-yantra')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#0a1a0a,#1a3a1a)">🕯️</div>
+      <div class="label"><span class="label-dot" style="background:#4caf50"></span>Ghost Yantra</div>
     </div>
-    <!-- Hyper Casual -->
-    <div class="game-card" onclick="openModal('hyper')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#3d1a00,#c45700)">🏃</div>
-      <div class="label"><span class="label-dot" style="background:#f5a623"></span>Hyper-Casual Games</div>
+    <div class="game-card" onclick="openModal('cogwoods')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#1a1200,#4a3500)">⚙️</div>
+      <div class="label"><span class="label-dot" style="background:#ffc107"></span>CogWoods</div>
     </div>
-    <!-- Neon Escape -->
-    <div class="game-card" onclick="openModal('neon')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#1a0033,#5c00a3)">⚡</div>
-      <div class="label"><span class="label-dot" style="background:var(--accent-purple)"></span>Neon Escape</div>
+    <div class="game-card" onclick="openModal('hamster')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#2e0a00,#7a2a00)">🐹</div>
+      <div class="label"><span class="label-dot" style="background:var(--accent-orange)"></span>XYZ Hamster</div>
     </div>
-    <!-- Jumpy Deer -->
-    <div class="game-card" onclick="openModal('jumpy')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#0a2e0a,#1a6b1a)">🦌</div>
-      <div class="label"><span class="label-dot" style="background:#4caf50"></span>Jumpy Deer</div>
+    <div class="game-card" onclick="openModal('doom')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#1a0000,#5a0000)">⏱️</div>
+      <div class="label"><span class="label-dot" style="background:#f44336"></span>2 Minutes to Doom</div>
     </div>
-    <!-- The Gatherer -->
-    <div class="game-card" onclick="openModal('gatherer')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#2e1a00,#8b5e00)">📦</div>
-      <div class="label"><span class="label-dot" style="background:#ffc107"></span>The Gatherer</div>
-    </div>
-    <!-- Skyline Rider -->
-    <div class="game-card" onclick="openModal('skyline')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#111,#333)">🌆</div>
-      <div class="label"><span class="label-dot" style="background:#9e9e9e"></span>Skyline Rider</div>
-    </div>
-    <!-- Altered Mask -->
-    <div class="game-card" onclick="openModal('mask')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#1a0033,#8b005d)">🎭</div>
-      <div class="label"><span class="label-dot" style="background:var(--accent-pink)"></span>Altered Mask</div>
-    </div>
-    <!-- ZEROculus -->
-    <div class="game-card" onclick="openModal('zero')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#001a2e,#004e7c)">🥽</div>
-      <div class="label"><span class="label-dot" style="background:var(--accent-cyan)"></span>ZEROculus</div>
+    <div class="game-card" onclick="openModal('purr')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#001a2e,#004e7c)">🎵</div>
+      <div class="label"><span class="label-dot" style="background:var(--accent-cyan)"></span>PURR Data Games</div>
     </div>
   </div>
-  <p class="game-more">More on <a href="#">schouffy.itch.io</a> (Even some stuff I'm not proud of 😅)</p>
+  <p class="game-more">More on <a href="https://sushant-sudan-12.itch.io" target="_blank">sushant-sudan-12.itch.io</a></p>
 </div>
 
-<!-- OTHER PROJECTS PAGE -->
+<!-- OTHER PROJECTS -->
 <div class="page" id="page-projects">
-  <div class="section-title">Apps and Tools</div>
-  <p class="section-sub">The following are some apps or tools I've made or heavily contributed to.</p>
+  <div class="section-title">Other Projects</div>
+  <p class="section-sub">Explorations, experiments, and collaborative work beyond solo game development.</p>
   <div class="projects-grid">
-    <div class="project-card big" onclick="openModal('cover')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#1a0000,#8b0000)">📚</div>
-      <div class="label" style="background:linear-gradient(transparent,rgba(139,0,0,0.9));padding:1rem">Cover</div>
+    <div class="project-card big" onclick="openModal('maramari')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#001a2e,#003366,#001a4e)">🚀</div>
+      <div class="label" style="background:linear-gradient(transparent,rgba(0,30,80,0.9));padding:1rem">Maramari Club — Narrative Design</div>
     </div>
-    <div class="project-card" onclick="openModal('steed')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#0a1628,#1a3a6b)">⛑️</div>
-      <div class="label" style="background:linear-gradient(transparent,rgba(26,90,160,0.9));padding:0.8rem">Steed</div>
+    <div class="project-card" onclick="openModal('gsoc')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#1a2e00,#336600)">☀️</div>
+      <div class="label" style="background:linear-gradient(transparent,rgba(30,80,0,0.9));padding:0.8rem">Google Summer of Code '24</div>
     </div>
   </div>
   <div class="projects-row2">
-    <div class="project-card" onclick="openModal('gamedev-portfolio')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#0a2e0a,#1a6b1a)">🕹️</div>
-      <div class="label" style="background:linear-gradient(transparent,rgba(26,107,26,0.9));padding:0.8rem">Gamedev Portfolio</div>
+    <div class="project-card" onclick="openModal('shaders')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#0a001a,#1a0040)">✨</div>
+      <div class="label" style="background:linear-gradient(transparent,rgba(20,0,60,0.9));padding:0.8rem">Shader Experiments</div>
     </div>
-    <div class="project-card" onclick="openModal('motivation')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#7a3e00,#d97700)">🔥</div>
-      <div class="label" style="background:linear-gradient(transparent,rgba(217,119,0,0.9));padding:0.8rem">Motivation Quotes</div>
+    <div class="project-card" onclick="openModal('blender')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#1a0e00,#3d2200)">🎨</div>
+      <div class="label" style="background:linear-gradient(transparent,rgba(40,20,0,0.9));padding:0.8rem">3D Art (Blender)</div>
     </div>
-    <div class="project-card" onclick="openModal('drysafe')">
-      <div class="placeholder-bg" style="background:linear-gradient(135deg,#004e7c,#87ceeb)">🚴</div>
-      <div class="label" style="background:linear-gradient(transparent,rgba(0,78,124,0.9));padding:0.8rem">DrySafe</div>
+    <div class="project-card" onclick="openModal('pixel')">
+      <div class="placeholder-bg" style="background:linear-gradient(135deg,#001a1a,#004040)">🖼️</div>
+      <div class="label" style="background:linear-gradient(transparent,rgba(0,40,40,0.9));padding:0.8rem">Pixel Art</div>
     </div>
   </div>
 </div>
 
-<!-- RESUME PAGE -->
+<!-- RESUME -->
 <div class="page" id="page-resume">
   <div class="section-title">Resume</div>
-  <p class="section-sub">19 years building games and apps — from solo indie dev to enterprise software.</p>
+  <p class="section-sub">4+ years in indie game development — from solo shipped titles to GSoC open-source contributions.</p>
   <div class="resume-wrap">
     <div class="resume-section">
-      <h3>Experience</h3>
+      <h3>Core Experience</h3>
       <div class="resume-item">
-        <div class="role">Solo Game Developer</div>
-        <div class="org">Ctrl Freak</div>
-        <div class="period">2020 — Present</div>
-        <div class="desc">Building horror and action games with Unity. Currently developing Lurking, a first-person survival horror game.</div>
+        <div class="role">Solo Developer — Hello Anxiety</div>
+        <div class="org">Independent / Ctrl Freak</div>
+        <div class="period">Aug 2025 — Jan 2026</div>
+        <div class="desc">
+          <ul>
+            <li>Designed & developed an indie game exploring anxiety through mechanics and environmental puzzle design</li>
+            <li>Built perception-based elements (visual "eyes"), constrained movement, and spatial tension systems</li>
+            <li>Core systems: player movement, interaction, progression through street, bookstore, and subway environments</li>
+            <li>Released on Steam — concept to shipped product solo</li>
+          </ul>
+        </div>
+        <a class="link-btn" href="https://store.steampowered.com/app/3876920/Hello_Anxiety/" target="_blank">🎮 Steam Page</a>
       </div>
       <div class="resume-item">
-        <div class="role">Fullstack Developer</div>
-        <div class="org">Various Companies</div>
-        <div class="period">2010 — 2020</div>
-        <div class="desc">Worked across the stack on websites, apps, and tools. Contributed to multiple commercial and open-source projects.</div>
+        <div class="role">Gameplay System Programmer (Unity)</div>
+        <div class="org">Ghost Yantra</div>
+        <div class="period">May 2025 — Nov 2025</div>
+        <div class="desc">
+          <ul>
+            <li>Implemented gameplay systems in Unity using C# on an existing project (1.5 years in development)</li>
+            <li>Designed and refined interaction systems and core mechanics</li>
+            <li>Structured and documented the C# codebase for easier iteration and testing</li>
+          </ul>
+        </div>
+        <a class="link-btn" href="https://store.steampowered.com/app/2872630/Ghost_Yantra/" target="_blank">🎮 Steam Page</a>
       </div>
       <div class="resume-item">
-        <div class="role">Windows App Developer</div>
-        <div class="org">Independent</div>
-        <div class="period">2014 — 2019</div>
-        <div class="desc">Designed and developed Cover, a comic book reader app for Windows. C#/XAML, WinRT then UWP. 1.2M+ downloads.</div>
+        <div class="role">Narrative Designer</div>
+        <div class="org">Maramari Club</div>
+        <div class="period">Mar 2025 — Jun 2025</div>
+        <div class="desc">
+          <ul>
+            <li>Designed early narrative and lore for a Sci-fi game universe</li>
+            <li>Focused on expandability for future games of different genres in the same universe</li>
+          </ul>
+        </div>
+        <a class="link-btn" href="https://youtu.be/TYEuIym0Qo4" target="_blank">▶ Teaser</a>
+      </div>
+      <div class="resume-item">
+        <div class="role">Game Developer — PURR Data Demo Games</div>
+        <div class="org">Google Summer of Code '24</div>
+        <div class="period">Jun 2024 — Aug 2024</div>
+        <div class="desc">
+          <ul>
+            <li>Open-source program building demo games for new users as examples in a music-based software</li>
+            <li>Developed 3 experimental games using music as a core gameplay mechanic</li>
+            <li>Explored interaction between sound, rhythm, and player input</li>
+          </ul>
+        </div>
+        <a class="link-btn" href="https://summerofcode.withgoogle.com/archive/2024/projects/Awg4DNqV" target="_blank">📄 Documentation</a>
       </div>
     </div>
     <div class="resume-section">
-      <h3>Skills</h3>
+      <h3>Skills & Tools</h3>
       <div class="tag-row">
-        <span class="tag hot">Unity / C#</span>
-        <span class="tag cool">JavaScript / TypeScript</span>
-        <span class="tag">React / Vue</span>
-        <span class="tag hot">Game Design</span>
-        <span class="tag cool">XAML / WinRT / UWP</span>
-        <span class="tag">Node.js</span>
-        <span class="tag hot">Level Design</span>
-        <span class="tag cool">UI/UX Design</span>
-        <span class="tag">SQL / MongoDB</span>
-        <span class="tag hot">3D (Blender)</span>
+        <span class="tag hot">Unity</span>
+        <span class="tag cool">C#</span>
+        <span class="tag purple">Gameplay Systems</span>
+        <span class="tag hot">Puzzle Design</span>
+        <span class="tag cool">Shaders</span>
+        <span class="tag">Procedural Generation</span>
+        <span class="tag purple">Narrative Design</span>
+        <span class="tag hot">Blender (3D)</span>
+        <span class="tag cool">Pixel Art</span>
+        <span class="tag">GitHub / GitLab</span>
+        <span class="tag hot">Game Feel</span>
+        <span class="tag cool">Systemic Design</span>
+      </div>
+    </div>
+    <div class="resume-section">
+      <h3>Areas of Interest</h3>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem">Deeply interested in games that use mechanics as a storytelling medium. Inspired by puzzle games that challenge perception and logic, and narratives that emerge through interaction rather than exposition.</p>
+      <div class="inspirations">
+        <h4>Game Inspirations</h4>
+        <div class="insp-tags">
+          <span class="insp-tag">Outer Wilds</span><span class="insp-tag">Baba is You</span><span class="insp-tag">Manifold Garden</span>
+          <span class="insp-tag">Blue Prince</span><span class="insp-tag">Portal</span><span class="insp-tag">Talos Principle</span>
+          <span class="insp-tag">Lorelei and the Laser Eyes</span><span class="insp-tag">Ooo</span>
+        </div>
+      </div>
+      <div class="inspirations" style="margin-top:0.8rem">
+        <h4>Literary Inspirations</h4>
+        <div class="insp-tags">
+          <span class="insp-tag">Piranesi</span><span class="insp-tag">Kurt Vonnegut</span><span class="insp-tag">Haruki Murakami</span>
+          <span class="insp-tag">Oscar Wilde</span><span class="insp-tag">Kazuo Ishiguro</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT PAGE -->
+<!-- CONTACT -->
 <div class="page" id="page-contact">
   <div class="contact-title">Let's get<br>in touch</div>
-  <p class="contact-sub">Feel free to contact me about any opportunity, or just to chat about gamedev, coding or anything else :)</p>
+  <p class="contact-sub">Feel free to reach out about game dev opportunities, collaborations, or just to talk about puzzle design and interactive narratives.</p>
   <div class="contact-list">
-    <a class="contact-item" href="https://schouffy.github.io" target="_blank">
-      <span class="contact-icon">🌐</span>
-      <span>schouffy.github.io</span>
+    <a class="contact-item" href="mailto:sushantsudan3075@gmail.com">
+      <span class="contact-icon">✉️</span><span>sushantsudan3075@gmail.com</span>
     </a>
-    <a class="contact-item" href="mailto:jerome@ctrlfreak.org">
-      <span class="contact-icon">✉️</span>
-      <span>jerome@ctrlfreak.org</span>
+    <a class="contact-item" href="tel:+919541057342">
+      <span class="contact-icon">📱</span><span>+91 9541057342</span>
     </a>
-    <a class="contact-item" href="https://linkedin.com/in/jscheefer" target="_blank">
-      <span class="contact-icon">💼</span>
-      <span>linkedin.com/in/jscheefer</span>
+    <a class="contact-item" href="https://store.steampowered.com/app/3876920/Hello_Anxiety/" target="_blank">
+      <span class="contact-icon">🎮</span><span>Hello Anxiety on Steam</span>
     </a>
-    <a class="contact-item" href="https://github.com/schouffy" target="_blank">
-      <span class="contact-icon">🐙</span>
-      <span>github.com/schouffy</span>
+    <a class="contact-item" href="https://store.steampowered.com/app/2872630/Ghost_Yantra/" target="_blank">
+      <span class="contact-icon">🎮</span><span>Ghost Yantra on Steam</span>
     </a>
-    <a class="contact-item" href="https://schouffy.itch.io" target="_blank">
-      <span class="contact-icon">🎮</span>
-      <span>schouffy.itch.io</span>
+    <a class="contact-item" href="https://sushant-sudan-12.itch.io" target="_blank">
+      <span class="contact-icon">🕹️</span><span>sushant-sudan-12.itch.io</span>
     </a>
-    <a class="contact-item" href="https://steam.com/schouffy" target="_blank">
-      <span class="contact-icon">🎯</span>
-      <span>steam.com/schouffy</span>
-    </a>
-    <a class="contact-item" href="https://steam.com/ctrlfreak" target="_blank">
-      <span class="contact-icon">🎯</span>
-      <span>steam.com/ctrlfreak</span>
+    <a class="contact-item" href="https://summerofcode.withgoogle.com/archive/2024/projects/Awg4DNqV" target="_blank">
+      <span class="contact-icon">☀️</span><span>Google Summer of Code '24</span>
     </a>
   </div>
 </div>
 
 <footer>
-  <span>Portfolio <span style="color:var(--muted)">by</span> <a href="#">schouffy</a></span>
-  <span>Reach me at <a href="mailto:jerome@ctrlfreak.org">jerome@ctrlfreak.org</a> or <a href="#" onclick="showPage('contact')">through here</a></span>
+  <span>Portfolio <span style="color:var(--muted)">by</span> <a href="#">Sushant Sudan</a></span>
+  <span>Reach me at <a href="mailto:sushantsudan3075@gmail.com">sushantsudan3075@gmail.com</a></span>
 </footer>
 
 <!-- MODAL -->
@@ -705,7 +408,7 @@
   <div class="modal-box" id="modal-box">
     <div class="color-bar" id="modal-color-bar"></div>
     <div class="modal-header">
-      <div class="modal-title" id="modal-title">Title</div>
+      <div class="modal-title" id="modal-title"></div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
@@ -721,116 +424,139 @@ function showPage(name) {
 }
 
 const modals = {
-  lurking: {
-    title: 'Lurking',
-    color: 'linear-gradient(90deg,#8b0000,#c0392b)',
-    desc: 'A first-person survival horror game set in a building infested by giant spiders. Search for tools and weapons to fight back and survive. Find a way out before you\'re eaten alive.',
-    videoId: 'dQw4w9WgXcQ',
-    btn: { label: 'Wishlist on Steam', type: 'steam', url: '#' },
+  'hello-anxiety': {
+    title: 'Hello Anxiety',
+    color: 'linear-gradient(90deg,#2d0050,#6b00b6)',
+    desc: 'An indie game exploring anxiety through both environmental and mechanics-driven puzzle design. Focused on representing psychological states using mechanics such as perception-based elements (visual "eyes"), constrained movement, and spatial tension.',
     features: [
-      'Smooth, reusable FPS controller with environment interaction features, weapons,…',
-      'PSX-inspired pixelated visuals with a modern horror atmosphere',
-      'Dynamic spider behavior that reacts to your actions'
+      'Perception-based mechanics — visual "eyes" react to player awareness',
+      'Constrained movement creating spatial tension and discomfort',
+      'Core systems: player movement, interaction, progression through interconnected environments',
+      'Street, bookstore, subway — each environment with distinct emotional pacing',
+      'Level design and mechanics work together without relying on heavy dialogue',
+      'Released on Steam — solo from concept to shipped product'
     ],
-    screenshots: ['🕷️','🏚️','🔦','🗺️']
+    btn: { label: '🎮 Wishlist / Buy on Steam', type: 'steam', url: 'https://store.steampowered.com/app/3876920/Hello_Anxiety/' },
+    screenshots: ['👁️','🏬','🚇','😰']
   },
-  phantom: {
-    title: 'Phantom Squad',
-    color: 'linear-gradient(90deg,#0d2b4e,#1a6ba0)',
-    desc: 'A top-down tactical shooter where you command a squad of special operatives. Made with Unity, featuring procedurally generated missions and intelligent squad AI.',
-    features: ['Top-down tactical gameplay','Procedural mission generation','Squad-based AI with cover mechanics'],
-    screenshots: ['🎯','💥','🗡️','🕹️']
-  },
-  hyper: {
-    title: 'Hyper-Casual Games',
-    color: 'linear-gradient(90deg,#c45700,#f5a623)',
-    desc: 'A collection of hyper-casual mobile games developed in Unity. Fast-paced, easy to pick up with satisfying one-tap mechanics.',
-    features: ['Multiple hyper-casual titles','Unity-based mobile development','Optimized for mobile performance'],
-    screenshots: ['🏃','⚡','🎮','📱']
-  },
-  neon: {
-    title: 'Neon Escape',
-    color: 'linear-gradient(90deg,#5c00a3,#a855f7)',
-    desc: 'A fast-paced neon-lit escape game built with Unity. Navigate glowing corridors, dodge traps, and find your way out.',
-    features: ['Neon aesthetic with dynamic lighting','Physics-based obstacle course','Time-trial leaderboard system'],
-    screenshots: ['⚡','🌟','💜','🔮']
-  },
-  jumpy: {
-    title: 'Jumpy Deer',
-    color: 'linear-gradient(90deg,#1a5c1a,#4caf50)',
-    desc: 'A charming endless-jumper featuring an adventurous deer leaping across procedurally generated isometric terrain.',
-    features: ['Isometric endless runner','Procedural terrain generation','Unlockable deer skins'],
-    screenshots: ['🦌','🌳','🏔️','🍀']
-  },
-  gatherer: {
-    title: 'The Gatherer',
-    color: 'linear-gradient(90deg,#6b4200,#d97700)',
-    desc: 'A physics-based puzzle game where you gather scattered objects under time pressure. Made for a game jam.',
-    features: ['Physics-based gathering mechanics','15 handcrafted levels','Time-pressure scoring system'],
-    screenshots: ['📦','⏱️','🔧','🎯']
-  },
-  skyline: {
-    title: 'Skyline Rider',
-    color: 'linear-gradient(90deg,#222,#555)',
-    desc: 'A minimalist side-scroller where a lone figure rides through a stark, silhouetted cityscape. Atmospheric and contemplative.',
-    features: ['High-contrast silhouette art style','Atmospheric generative soundtrack','Infinite procedural city generation'],
-    screenshots: ['🌆','🌉','🌃','🚶']
-  },
-  mask: {
-    title: 'Altered Mask',
-    color: 'linear-gradient(90deg,#8b005d,#ec4899)',
-    desc: 'A retro-synthwave action game with neon aesthetics and fast combat. Fight through waves of enemies in a stylish cyberpunk world.',
-    features: ['Synthwave / retro neon aesthetic','Wave-based combat system','Procedurally mixed soundtrack'],
-    screenshots: ['🎭','🌺','💿','🌙']
-  },
-  zero: {
-    title: 'ZEROculus',
-    color: 'linear-gradient(90deg,#004e7c,#4ecdc4)',
-    desc: 'A VR-inspired experience built with Unity exploring zero-gravity mechanics and spatial puzzles.',
-    features: ['Zero-gravity movement system','Spatial puzzle design','VR-ready with fallback desktop mode'],
-    screenshots: ['🥽','🌌','🔵','⭕']
-  },
-  cover: {
-    title: 'Cover',
-    color: 'linear-gradient(90deg,#8b0000,#c0392b)',
-    desc: 'Cover is the best app to read and manage your comic books on Windows. More than 1.2 million downloads since its release in 2014, still maintained and always 4+ stars. Featured several times by Microsoft in the US, France, CA, etc. Designed and developed the whole app.',
-    btn: { label: 'Download from Windows Store', type: 'store', url: '#' },
+  'ghost-yantra': {
+    title: 'Ghost Yantra',
+    color: 'linear-gradient(90deg,#1a3a1a,#2e7d32)',
+    desc: 'A game I contributed to as a Gameplay System Programmer. Worked on implementation in Unity using C# on a project already 1.5 years in development — designing and refining interaction systems and core mechanics.',
     features: [
-      'All file formats: CBZ/ZIP, CBR/RAR, 7Z/CB7, CBT, PDF, EPUB (images only)',
-      'Crystal-clear library management: Shelves, read/unread status, page count, current page,…',
-      'Store comic books anywhere: Local folder, network, OneDrive, Google Drive, Dropbox',
-      'Customize reading: single/dual page, fit width/height/page, background color, night mode,…',
-      'Developed in C#/XAML for WinRT then UWP'
+      'Gameplay systems implementation in Unity / C#',
+      'Interaction systems and core mechanics design',
+      'Codebase structuring and documentation for easier iteration',
+      'Contributed during May–November 2025'
     ],
-    screenshots: ['📱','📚','📖','🗂️']
+    btn: { label: '🎮 View on Steam', type: 'steam', url: 'https://store.steampowered.com/app/2872630/Ghost_Yantra/' },
+    screenshots: ['🕯️','👻','🪄','🌿']
   },
-  steed: {
-    title: 'Steed',
-    color: 'linear-gradient(90deg,#1a3a6b,#4a90d9)',
-    desc: 'A motorcycle companion app for Windows. Track rides, monitor your bike health, and share your journeys.',
-    features: ['Ride tracking and statistics','Bike maintenance reminders','Journey sharing and community'],
-    screenshots: ['🏍️','📍','⛽','🛣️']
+  'cogwoods': {
+    title: 'CogWoods',
+    color: 'linear-gradient(90deg,#4a3500,#8b6914)',
+    desc: 'A puzzle-based game exploring mechanical systems and player logic. Built to investigate how gear and cog-based mechanics can form the basis of interesting spatial puzzles.',
+    features: [
+      'Mechanical puzzle systems centered on gears and cogs',
+      'Player logic and spatial reasoning challenges',
+      'Built as an exploration of systemic puzzle design'
+    ],
+    btn: { label: '🕹️ Play on itch.io', type: 'itch', url: 'https://sushant-sudan-12.itch.io/cogwords' },
+    screenshots: ['⚙️','🔩','🧩','🌲']
   },
-  'gamedev-portfolio': {
-    title: 'Gamedev Portfolio',
-    color: 'linear-gradient(90deg,#1a5c1a,#2ecc71)',
-    desc: 'A curated portfolio showcasing indie game development work including games made during game jams and personal projects.',
-    features: ['Curated game showcase','Mobile-responsive design','Integrated itch.io feed'],
-    screenshots: ['🕹️','🎮','🏆','⭐']
+  'hamster': {
+    title: 'XYZ Hamster',
+    color: 'linear-gradient(90deg,#7a2a00,#c45700)',
+    desc: 'A physics-driven gameplay prototype focusing on emergent interaction and movement behavior. A hamster-based experiment exploring how physics can create unexpected and delightful player interactions.',
+    features: [
+      'Physics-driven movement and emergent behavior',
+      'Hamster-based prototype with unpredictable physics',
+      'Focused on game feel through physical interaction'
+    ],
+    btn: { label: '🕹️ Play on itch.io', type: 'itch', url: 'https://sushant-sudan-12.itch.io/xyz-hamster' },
+    screenshots: ['🐹','⚡','🔄','💨']
   },
-  motivation: {
-    title: 'Motivation Quotes',
-    color: 'linear-gradient(90deg,#d97700,#ff9f43)',
-    desc: 'A clean, beautiful motivation quotes app. Delivers daily curated quotes to keep you inspired.',
-    features: ['Curated quote database','Daily notification system','Share quotes to social media'],
-    screenshots: ['🔥','💪','✨','📣']
+  'doom': {
+    title: '2 Minutes to Doom',
+    color: 'linear-gradient(90deg,#5a0000,#b71c1c)',
+    desc: 'A time-bound pressure narrative experience. Everything has to be resolved in 2 minutes — exploring how extreme time constraints can create emotional tension and urgency in a narrative context.',
+    features: [
+      '2-minute hard time constraint drives all tension',
+      'Narrative experience under extreme pressure',
+      'Explores time as a core mechanic, not just a challenge'
+    ],
+    btn: { label: '🕹️ Play on itch.io', type: 'itch', url: 'https://sushant-sudan-12.itch.io/2-minutes-to-doom' },
+    screenshots: ['⏱️','💀','🔴','⚠️']
   },
-  drysafe: {
-    title: 'DrySafe',
-    color: 'linear-gradient(90deg,#004e7c,#3498db)',
-    desc: 'A cycling safety app that alerts cyclists about rain conditions and wet roads ahead. Keep your ride dry and safe.',
-    features: ['Real-time rain radar integration','Route-based precipitation alerts','Commuter scheduling assistant'],
-    screenshots: ['🚴','🌧️','🌤️','📡']
+  'purr': {
+    title: 'PURR Data — Demo Games',
+    color: 'linear-gradient(90deg,#004e7c,#0277bd)',
+    desc: 'Google Summer of Code 2024 open-source contribution. Developed 3 experimental games for PURR Data (a music-based software) as examples for new users. Music is a core gameplay mechanic in each.',
+    features: [
+      '3 experimental games built for new user onboarding',
+      'Music as a core mechanic — sound, rhythm, player input',
+      'Rapid prototyping with unconventional systems',
+      'Open-source contribution under Google Summer of Code 2024'
+    ],
+    btn: { label: '📄 GSoC Documentation', type: 'gsoc', url: 'https://summerofcode.withgoogle.com/archive/2024/projects/Awg4DNqV' },
+    screenshots: ['🎵','🎹','🎼','🎧']
+  },
+  'maramari': {
+    title: 'Maramari Club',
+    color: 'linear-gradient(90deg,#003366,#1a5276)',
+    desc: 'Narrative design work on a Sci-fi game universe. Focused on designing early narrative and lore with expandability for future games of different genres in the same universe.',
+    videoId: 'TYEuIym0Qo4',
+    features: [
+      'Sci-fi universe narrative and lore design',
+      'Expandable world-building for multiple future genres',
+      'Early-stage narrative architecture'
+    ],
+    screenshots: ['🚀','🌌','📖','🔭']
+  },
+  'gsoc': {
+    title: 'Google Summer of Code \'24',
+    color: 'linear-gradient(90deg,#336600,#4caf50)',
+    desc: 'Selected for GSoC 2024 to contribute to PURR Data, a music-based software. Built demo games to help new users understand the software through playful, music-driven examples.',
+    btn: { label: '📄 View on GSoC Archive', type: 'gsoc', url: 'https://summerofcode.withgoogle.com/archive/2024/projects/Awg4DNqV' },
+    features: [
+      'Competitive open-source program selection',
+      'Built 3 demo games using music as core mechanic',
+      'Contributed to open-source community tooling'
+    ],
+    screenshots: ['☀️','💻','🎵','🌍']
+  },
+  'shaders': {
+    title: 'Shader Experiments',
+    color: 'linear-gradient(90deg,#1a0040,#4a00b0)',
+    desc: 'Currently exploring shader-based visual effects to enhance visual feedback and player perception. Focused on using shaders to amplify game feel and communicate game state to players.',
+    features: [
+      'Shader-based visual feedback systems',
+      'Player perception enhancement through visual effects',
+      'Ongoing active exploration — work in progress'
+    ],
+    screenshots: ['✨','🔮','💜','🌈']
+  },
+  'blender': {
+    title: '3D Art — Blender',
+    color: 'linear-gradient(90deg,#3d2200,#8b5e00)',
+    desc: 'Learning procedural and stylized approaches to environment creation in Blender, primarily for rapid prototyping in game development.',
+    features: [
+      'Procedural environment creation',
+      'Stylized 3D art for game prototyping',
+      'Focused on fast asset creation for rapid iteration'
+    ],
+    screenshots: ['🎨','🏔️','🌳','🏗️']
+  },
+  'pixel': {
+    title: 'Pixel Art',
+    color: 'linear-gradient(90deg,#004040,#00796b)',
+    desc: 'Experimenting with sprite creation and animation for gameplay clarity. Pixel art as a rapid prototyping tool — fast to create, easy to iterate, clear visual communication.',
+    features: [
+      'Sprite creation and frame-by-frame animation',
+      'Gameplay clarity through pixel art visual language',
+      'Rapid prototyping asset pipeline'
+    ],
+    screenshots: ['🖼️','🟦','🟧','🎮']
   }
 };
 
@@ -839,28 +565,20 @@ function openModal(id) {
   if (!m) return;
   document.getElementById('modal-title').textContent = m.title;
   document.getElementById('modal-color-bar').style.background = m.color;
-
   let html = '';
   if (m.desc) html += `<p class="modal-desc">${m.desc}</p>`;
-  if (m.videoId) {
-    html += `<div class="modal-video-wrap"><iframe src="https://www.youtube.com/embed/${m.videoId}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
-  }
-  if (m.btn) {
-    html += `<a class="modal-btn ${m.btn.type}" href="${m.btn.url}" target="_blank">${m.btn.label}</a>`;
-  }
-  if (m.features && m.features.length) {
-    html += `<div class="modal-features"><h4>Main features</h4><ul>`;
+  if (m.videoId) html += `<div class="modal-video-wrap"><iframe src="https://www.youtube.com/embed/${m.videoId}" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+  if (m.btn) html += `<a class="modal-btn ${m.btn.type}" href="${m.btn.url}" target="_blank">${m.btn.label}</a>`;
+  if (m.features?.length) {
+    html += `<div class="modal-features"><h4>Details</h4><ul>`;
     m.features.forEach(f => html += `<li>${f}</li>`);
     html += `</ul></div>`;
   }
   if (m.screenshots) {
     html += `<div class="modal-screenshots">`;
-    m.screenshots.forEach(s => {
-      html += `<div class="ss" style="font-size:2.5rem">${s}</div>`;
-    });
+    m.screenshots.forEach(s => html += `<div class="ss">${s}</div>`);
     html += `</div>`;
   }
-
   document.getElementById('modal-body').innerHTML = html;
   document.getElementById('modal-overlay').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
@@ -879,6 +597,3 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 </script>
 </body>
 </html>
-
-
-
